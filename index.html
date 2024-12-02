@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Password Protected Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,14 +18,15 @@
             color: #000;
             padding: 10px 20px;
             text-align: center;
-            border: 10px solid #ff1818; 
+            border: 5px solid #ff1818; 
         }
         main {
             padding: 20px;
             max-width: 800px;
             margin: 20px auto;
-            border: 2px dashed #333; /* Dashed dark gray border */
+            border: 2px ; /* Dashed dark gray border */
             background: #fff; /* Add a white background for contrast */
+            text-align: center;
         }
         footer {
             text-align: center;
@@ -35,7 +36,18 @@
             border-top: 4px solid #1f51ff; /* Neon blue top border */
         }
         header h1 {
-            font-size: 2em; /* Adjust the size as needed */}
+            font-size: 2em; /* Adjust the size as needed */
+        }
+        input[type="password"], button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -43,11 +55,34 @@
         <h1>HAPPY 5 MONTHS BABY</h1>
     </header>
     <main>
-        <p>Hello! This is a simple website hosted using GitHub Pages.</p>
-        <p>Edit this file to customize your content!</p>
+        <p>Please enter the password to see the special message:</p>
+        <input type="password" id="passwordInput" placeholder="Enter password">
+        <button onclick="checkPassword()">Submit</button>
+        <div id="output"></div>
     </main>
     <footer>
-        <p>&copy; 2024 Your Name</p>
+        <p></p>
     </footer>
+
+    <script>
+        // Password management object
+        const passwordManager = {
+            correctPassword: "love123", // Set your password here
+            check: function(input) {
+                if (input === this.correctPassword) {
+                    return "🎉 Congratulations! You unlocked the message: 'I love you more than words can say 💖'";
+                } else {
+                    return "❌ Incorrect password. Please try again.";
+                }
+            }
+        };
+
+        // Function to handle password checking
+        function checkPassword() {
+            const userInput = document.getElementById("passwordInput").value;
+            const output = passwordManager.check(userInput);
+            document.getElementById("output").textContent = output;
+        }
+    </script>
 </body>
 </html>
