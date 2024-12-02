@@ -18,13 +18,13 @@
             color: #000;
             padding: 10px 20px;
             text-align: center;
-            border: 5px solid #ff1818; 
+            border: 10px solid #FF46A2; 
         }
         main {
             padding: 20px;
             max-width: 800px;
             margin: 20px auto;
-            border: 2px ; /* Dashed dark gray border */
+            border: 2px dashed #333; /* Dashed dark gray border */
             background: #fff; /* Add a white background for contrast */
             text-align: center;
         }
@@ -33,18 +33,21 @@
             padding: 10px;
             background: #FF46A2;
             color: #fff;
-            border-top: 4px solid #1f51ff; /* Neon blue top border */
+            border-top: 4px solid #ff1818; /* Neon blue top border */
         }
         header h1 {
             font-size: 2em; /* Adjust the size as needed */
+        }
+        .password-box {
+            margin: 20px 0;
         }
         input[type="password"], button {
             padding: 10px;
             font-size: 16px;
             margin: 5px;
         }
-        #output {
-            margin-top: 20px;
+        .output {
+            margin-top: 10px;
             font-size: 1.2em;
             color: #333;
         }
@@ -55,33 +58,65 @@
         <h1>HAPPY 5 MONTHS BABY</h1>
     </header>
     <main>
-        <p>Please enter the password to see the special message:</p>
-        <input type="password" id="passwordInput" placeholder="Enter password">
-        <button onclick="checkPassword()">Submit</button>
-        <div id="output"></div>
+        <p>Please enter the password to see each special message:</p>
+        
+        <!-- Password Box 1 -->
+        <div class="password-box">
+            <input type="password" id="password1" placeholder="Enter password 1">
+            <button onclick="checkPassword(1)">Submit</button>
+            <div id="output1" class="output"></div>
+        </div>
+
+        <!-- Password Box 2 -->
+        <div class="password-box">
+            <input type="password" id="password2" placeholder="Enter password 2">
+            <button onclick="checkPassword(2)">Submit</button>
+            <div id="output2" class="output"></div>
+        </div>
+
+        <!-- Password Box 3 -->
+        <div class="password-box">
+            <input type="password" id="password3" placeholder="Enter password 3">
+            <button onclick="checkPassword(3)">Submit</button>
+            <div id="output3" class="output"></div>
+        </div>
+
+        <!-- Password Box 4 -->
+        <div class="password-box">
+            <input type="password" id="password4" placeholder="Enter password 4">
+            <button onclick="checkPassword(4)">Submit</button>
+            <div id="output4" class="output"></div>
+        </div>
+
+        <!-- Password Box 5 -->
+        <div class="password-box">
+            <input type="password" id="password5" placeholder="Enter password 5">
+            <button onclick="checkPassword(5)">Submit</button>
+            <div id="output5" class="output"></div>
+        </div>
     </main>
     <footer>
         <p></p>
     </footer>
 
     <script>
-        // Password management object
         const passwordManager = {
-            correctPassword: "love123", // Set your password here
-            check: function(input) {
-                if (input === this.correctPassword) {
-                    return "🎉 Congratulations! You unlocked the message: 'I love you more than words can say 💖'";
-                } else {
-                    return "❌ Incorrect password. Please try again.";
-                }
-            }
+            1: { password: "love123", message: "🎉 Message 1: You're the best! 💖" },
+            2: { password: "sweetheart", message: "🎉 Message 2: I adore you! 🌹" },
+            3: { password: "forever", message: "🎉 Message 3: Forever and always. 💞" },
+            4: { password: "happiness", message: "🎉 Message 4: You bring me joy! ✨" },
+            5: { password: "special", message: "🎉 Message 5: You're my everything! 🥰" }
         };
 
-        // Function to handle password checking
-        function checkPassword() {
-            const userInput = document.getElementById("passwordInput").value;
-            const output = passwordManager.check(userInput);
-            document.getElementById("output").textContent = output;
+        function checkPassword(boxNumber) {
+            const userInput = document.getElementById(`password${boxNumber}`).value;
+            const outputDiv = document.getElementById(`output${boxNumber}`);
+            
+            if (userInput === passwordManager[boxNumber].password) {
+                outputDiv.textContent = passwordManager[boxNumber].message;
+            } else {
+                outputDiv.textContent = "❌ Incorrect password. Please try again.";
+            }
         }
     </script>
 </body>
